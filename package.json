@@ -15,6 +15,7 @@
   "keywords": [
     "frida",
     "typescript",
+    "frida-compile",
     "compiler",
     "esbuild",
     "loader"
