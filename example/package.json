@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "launch": "frida-loader -U -n XXX src/index.ts"
+    "launch": "frida-loader -U -n XXX src/agent.ts"
   },
   "devDependencies": {
     "@types/frida-gum": "^18.0.0",
     "@types/node": "^16.4.8",
-    "frida-loader": "^1.0.0"
+    "frida-loader": "^1.0.1"
   },
   "keywords": [],
   "author": "",
