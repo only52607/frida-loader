@@ -46,7 +46,7 @@ npm run launch
 # Documentation
 
 ```
-Usage: loader-cli [options] <entry-file>
+Usage: frida-loader [options] <entry-file>
 
 Options:
   -V, --version             output the version number
