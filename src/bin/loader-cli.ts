@@ -17,7 +17,7 @@ program
     .option("-p, --attach-pid <PID>", "attach to PID")
 
     .option("-m, --minify", "minify output script")
-    .option("--no-watch", "no watch for file changed", false)
+    .option("--no-watch", "do not watch for file changed", false)
     .option("--no-inject", "do not inject to process", false)
 
     .action((entryFile: string) => {
