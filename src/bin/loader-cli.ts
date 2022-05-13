@@ -12,7 +12,7 @@ program
     .option("-R, --remote", "connect to remote frida-server")
     
     .option("-f , --file <TARGET>", "spawn FILE")
-    .option("-F, --attach-frontmost", "attach to frontmost application")
+    .option("-F, --attach-frontmost", "attach to frontmost application", false)
     .option("-n, --attach-name <NAME>", "attach to NAME")
     .option("-p, --attach-pid <PID>", "attach to PID")
 
@@ -35,7 +35,8 @@ program
             noInject: options.noInject,
             noWatch: options.noWatch,
             device,
-            spawnFile: options.file
+            spawnFile: options.file,
+            attachFrontmost: options.attachFrontmost
         })
     })
     

@@ -1,5 +1,5 @@
 import * as esbuild from "esbuild"
-import { Device, DeviceType, getDevice, getLocalDevice, getRemoteDevice, getUsbDevice, Message, Session, TargetProcess } from "frida"
+import { Device, DeviceType, getDevice, getLocalDevice, getRemoteDevice, getUsbDevice, Message, Scope, Session, TargetProcess } from "frida"
 import type { Script } from "frida"
 import { createInterface } from "readline"
 import { WatchMode } from "esbuild"
@@ -14,7 +14,8 @@ export interface LoadOptions {
     noWatch: boolean,
     device?: DeviceSelector,
     targetProcess?: TargetProcess,
-    spawnFile?: string
+    spawnFile?: string,
+    attachFrontmost: boolean
 }
 
 function waitingForDetach(session: Session) {
@@ -74,19 +75,26 @@ export async function load(loadOptions: LoadOptions) {
     })
     console.log(`build script finished`)
     if (loadOptions.noInject) process.exit()
+
     const deviceSelector = loadOptions.device
     if (!deviceSelector) throw Error("No device specified")
     const device: Device = await findDevice(deviceSelector)
     console.log(`found device ${device.name}`)
+
+    const attachFrontmost = loadOptions.attachFrontmost
     const spawnFile = loadOptions.spawnFile
     let targetProcess: TargetProcess | undefined
-    if (spawnFile) {
+
+    if (attachFrontmost) {
+        targetProcess = (await device.getFrontmostApplication({ scope: Scope.Full }))?.name
+    } else if (spawnFile) {
         console.log(`spawn ${spawnFile}...`)
         targetProcess = await device.spawn(spawnFile)
     } else {
         targetProcess = loadOptions.targetProcess
     }
     if (!targetProcess) throw Error("No process specified")
+
     console.log(`attaching ${targetProcess}...`)
     const session = await device.attach(targetProcess)
     const identity = `[${device.name}: ${loadOptions.targetProcess}]`
