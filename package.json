@@ -2,12 +2,12 @@
   "name": "frida-loader",
   "version": "1.0.0",
   "description": "A faster frida-compile to bundle and inject script",
-  "main": "dist/index.js",
+  "main": "/dist/loader.js",
   "scripts": {
     "build": "tsc"
   },
   "bin": {
-    "frida-loader": "dist/bin/loader.js"
+    "frida-loader": "dist/bin/loader-cli.js"
   },
   "files": [
     "/dist"

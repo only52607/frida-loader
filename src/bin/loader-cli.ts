@@ -1,32 +1,41 @@
 #!/usr/bin/env node
+
 import { program } from "commander"
-import { load } from "../builder"
+import { DeviceSelector, load } from "../loader"
 
 program
-    .version("1.0.0")
+    .version(require("../../package.json").version)
     .argument("<entry-file>")
 
     .option("-D, --device ID", "connect to device with the given ID")
     .option("-U, --usb", "connect to USB device")
     .option("-R, --remote", "connect to remote frida-server")
-    .option("-H, --host <HOST>", "connect to remote frida-server on HOST")
-
+    
+    .option("-f , --file <TARGET>", "spawn FILE")
     .option("-F, --attach-frontmost", "attach to frontmost application")
     .option("-n, --attach-name <NAME>", "attach to NAME")
     .option("-p, --attach-pid <PID>", "attach to PID")
 
-    .option("-m, --minify", "minify output script", false)
-    .option("-o, --output", "", "./dist/_agent.js")
-    .option("-w, --watch", "watch for file changed", true)
+    .option("-m, --minify", "minify output script")
+    .option("--no-watch", "no watch for file changed", false)
+    .option("--no-inject", "do not inject to process", false)
 
     .action((entryFile: string) => {
         const options = program.opts()
+        let device: DeviceSelector = "local"
+        if (options.remote) {
+            device = "remote"
+        } else if (options.usb) {
+            device = "usb"
+        }
         load({
             entryFile: entryFile,
-            outputFile: options.output,
             targetProcess: options.attachPid ?? options.attachName,
             minify: options.minify,
-            watch: options.watch
+            noInject: options.noInject,
+            noWatch: options.noWatch,
+            device,
+            spawnFile: options.file
         })
     })
     
