@@ -1,0 +1,16 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "launch": "frida-loader -U -n XXX src/index.ts"
+  },
+  "devDependencies": {
+    "@types/frida-gum": "^18.0.0",
+    "@types/node": "^16.4.8"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
