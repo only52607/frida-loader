@@ -28,5 +28,8 @@
     "typescript": "^4.6.4"
   },
   "author": "ooooonly",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "url": "git@git.zhlh6.cn:only52607/frida-loader.git"
+  }
 }
