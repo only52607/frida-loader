@@ -1,6 +1,8 @@
 # frida-loader
 
-A faster frida-compile to bundle and inject script
+![npm](https://badgen.net/npm/v/frida-loader)
+
+🚀A faster frida-compile to bundle and inject script
 
 ## Difference between frida-loader and frida-compile
 
@@ -24,7 +26,7 @@ npm install frida-loader --save-dev
 ```
 
 2. Add a build script to your package.json file like this, then change `PROCESS` to your process name and change `src/index.ts` to your entry script, see [Documentation](#Documentation) for more details
-```
+```json
 {
   "scripts": {
     "build": "frida-loader src/index.ts -U -n PROCESS"
