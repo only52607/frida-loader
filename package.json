@@ -1,6 +1,6 @@
 {
   "name": "frida-loader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A faster frida-compile to bundle and inject script",
   "main": "/dist/loader.js",
   "scripts": {
@@ -22,10 +22,12 @@
   ],
   "devDependencies": {
     "@types/node": "^16.4.8",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
     "commander": "^9.2.0",
     "esbuild": "^0.14.39",
-    "frida": "^15.1.22",
-    "typescript": "^4.6.4"
+    "frida": "^15.1.22"
   },
   "author": "ooooonly",
   "license": "MIT",
