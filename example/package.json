@@ -8,7 +8,8 @@
   },
   "devDependencies": {
     "@types/frida-gum": "^18.0.0",
-    "@types/node": "^16.4.8"
+    "@types/node": "^16.4.8",
+    "frida-loader": "^1.0.0"
   },
   "keywords": [],
   "author": "",
